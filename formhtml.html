@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>work with form</title>
+	</head>
+	<body>
+		<!--method: устанавливает метод отправки данных на сервер. Допустимы два значения: post и get-->
+		<!--post позволяет передать данные на веб-сервер / get позволяет передать данные через строку запроса-->
+		<!--autocomplete можно отключить автодополнение-->
+		<form method="post" autocomplete="off" action="http://localhost:8080/login.php">
+	            <input name="login"/>
+	            <input type="password" autocomplete="on"/>
+	            <input type="submit" value="Войти" /></br>	            
+	          
+	    </form>
+	    <form method="get" action="formhtml.html">
+	    	<input type="text" name="login" value="Tom"/>
+            <input type="password" name="password"/>
+            <input type="submit" value="Войти" />
+	    </form>
+
+	    <!--form: определяет форму, за которой закреплена кнопка отправки
+		formaction: устанавливает адрес, на который отправляется форма. Если у элемента form задан атрибут action, то он переопределяется
+		formenctype: устанавливает формат отправки данных. Если у элемента form установлен атрибут enctype, то он переопределяется
+		formmethod: устанавливает метод отправки формы (post или get). Если у элемента form установлен атрибут method, то он переопределяется-->
+	    <form>
+	    	
+            <!--dir: устанавливает направление текста
+			list: устанавливает список подсказок для ввода в поле
+			maxlength: максимально допустимое количество символов в текстовом поле
+			pattern: определяет шаблон, которому должен соответствовать вводимый текст
+			placeholder: устанавливает текст, который по умолчанию отображается в текстовом поле
+			readonly: делает текстовом поле доступным только для чтения
+			required: указывает, что текстовое поле обязательно должно иметь значение
+			size: устанавливает ширину текстового поля в видимых символах
+			value: устанавливает значение по умолчанию в текстовом поле-->
+            <p><input type="text" name="userName" placeholder="Введите имя" size="18" /></p>
+            <p><input type="text" name="userPhone" placeholder="Введите номер телефона" size="18" maxlength="11" /></p>
+            <p><input type="text" name="userName" value="Том" readonly /></p>
+			<p><input type="text" name="userPhone" value="+12345678901" disabled /></p>           	
+            <p>
+            	<!--type="image" позволяет использовать в качестве кнопки изображение-->
+                <button type="submit" formmethod="get" formaction="formhtml.html">Отправить</button> 
+                <button type="reset">Отмена</button>
+            </p>
+        </form>
+        
+        <!-- list. Он содержит ссылку на элемент datalist, который определяет набор значений, появляющихся в виде подсказки при вводе в текстовое поле-->
+        <form>
+            <p><input list="phonesList" type="text" name="model" placeholder="Введите модель" /></p>
+            <p>
+                <button type="submit">Отправить</button>
+            </p>
+        </form>
+        <datalist id="phonesList">
+            <option value="iPhone 6S" label="54000"/>
+            <option value="Lumia 950">35000</option>
+            <option value="Nexus 5X"/>
+        </datalist>
+        
+        <!--Атрибут dir задает направление ввода текста. Он может принимать два значения: ltr (слева направо) и rtl (справа налево)-->
+        <form>
+        	<input type="text" name="username" dir="rtl" />
+        </form>
+        
+        <!--Для создания полей поиска предназначен элемент input с атрибутом type="search"-->
+        <form>
+        	<input type="search" name="term" />
+        	<input type="submit" value="Поиск" />
+    	</form>
+
+    	<!--label. Метки создают аннотацию или заголовок к полю ввода, указывают, для чего это поле предназначено-->
+    	<form>
+            <p>
+            	<!--Для связи с полем ввода метка имеет атрибут for, который указывает на id поля ввода-->
+                <!--Так, текстовое поле здесь имеет атрибут id="login". Поэтому у связанной с ним метки устанавливается атрибут for="login". Нажатие на эту метку позволяет перевести фокус на текстовое поле для ввода логина:-->
+                <!--установить автофокус по умолчанию на какое-либо поле ввода. Для этого применяется атрибут autofocus-->
+                <label for="login">Логин: </label>
+                <input type="text" autofocus id="login" name="login" />
+            </p>
+            <p>            	
+                <label for="password">Пароль: </label>
+                <input type="password" id="password" name="password" />
+            </p>
+            <p>
+                <button type="submit">Отправить</button>
+            </p>
+        </form>
+
+        <!--number-->
+        <form>
+            <p>
+                <label for="age">Возраст: </label>
+                <input type="number" step="1" min="1" max="100" value="10" id="age" name="age"/>
+            </p>
+            <p>
+                <button type="submit">Отправить</button>
+            </p>
+        </form>
+        
+        <!--datalist and number-->
+        <form>
+            <p>
+                <label for="price">Цена: </label>
+                <input type="number" list="priceList"
+                    step="1000" min="3000" max="100000" value="10000" id="price" name="price"/>
+            </p>
+            <p>
+                <button type="submit">Отправить</button>
+            </p>
+        </form>
+        <datalist id="priceList">
+            <option value="15000" />
+            <option value="20000" />
+            <option value="25000" />
+        </datalist>
+
+        <!--range-->
+        <form>
+            <p>
+                <label for="price">Цена:</label> 
+                1<input type="range" step="1" min="0" max="100" value="10" id="price" name="price"/>100
+            </p>
+            <p>
+                <button type="submit">Отправить</button>
+            </p>
+        </form>
+
+        <p>--------------------------------</p>
+        <!--CheckBox and Radio-->
+        <form>
+            <p>
+                <input type="checkbox" checked name="html5"/>HTML5
+            </p>
+            <p>
+                <input type="checkbox" name="dotnet"/>.NET
+            </p>
+            <p>
+                <input type="checkbox" name="java"/>Java
+            </p>
+            <p>
+                <button type="submit">Отправить</button>
+            </p>
+        </form>
+
+        <form>
+            <h2>Укажите пол</h2>
+            <p>
+                <input type="radio" value="man" checked name="gender"/>мужской
+            </p>
+            <p>
+                <input type="radio" value="woman" name="gender"/>женский
+            </p>
+            <h2>Выберите технологию</h2>
+            <p>
+                <input type="radio" value="html5" checked name="tech"/>HTML5
+            </p>
+            <p>
+                <input type="radio" value="net" name="tech"/>.NET
+            </p>
+            <p>
+                <input type="radio" value="java" name="tech"/>Java
+            </p>
+            <p>
+                <button type="submit">Отправить</button>
+            </p>
+        </form>
+
+        <p>--------------------------------</p>
+        <!--Color-->
+        <label for="favcolor">Выберите цвет</label>
+		<input type="color" id="favcolor" name="favcolor" />
+
+		<label for="favcolor">Выберите цвет</label>
+		<input type="color" list="colors" id="favcolor" name="favcolor" />
+		<datalist id="colors">
+		    <option value="#0000FF" label="blue">
+		    <option value="#008000" label="green">
+		    <option value="#ff0000" label="red">
+		</datalist>
+
+		<p>--------------------------------</p>
+		<!--Поля для ввода url, email, телефона-->
+		<form>
+			<!--maxlength: максимально допустимое количество символов в поле
+			pattern: определяет шаблон, которому должен соответствовать вводимый текст
+			placeholder: устанавливает текст, который по умолчанию отображается в поле
+			readonly: делает текстовом поле доступным только для чтения
+			required: указывает, что текстовое поле обязательно должно иметь значение
+			size: устанавливает ширину поля в видимых символах
+			value: устанавливает значение по умолчанию для поля
+			list: устанавливает привязку к элементу datalist со списком возможных значений-->
+            <p>
+                <label for="email">Email: </label>
+                <input type="email" placeholder="user@gmail.com" id="email" name="email"/>
+            </p>
+            <p>
+                <label for="url">URL: </label>
+                <input type="url" id="url" name="url"/>
+            </p>
+            <p>
+                <label for="phone">Телефон: </label>
+                <input type="tel" placeholder="(XXX)-XXX-XXXX" id="phone" name="phone" maxlength="10" />
+            </p>
+            <p>
+                <button type="submit">Отправить</button>
+            </p>
+        </form>
+        <p>--------------------------------</p>
+        
+        <!--Date-->
+        <form>
+            <p>
+                <label for="firstname">Имя: </label>
+                <input type="text" id="firstname" name="firstname"/>
+            </p>
+            <p>
+                <label for="date">Дата рождения: </label>
+                <input type="date" id="date" name="date"/>
+            </p>
+            <p>
+                <label for="week">Неделя: </label>
+                <input type="week" name="week" id="week" />
+            </p>
+            <p>
+                <label for="localdate">Дата и время: </label>
+                <input type="datetime-local" id="localdate" name="date"/>
+            </p>
+            <p>
+                <label for="month">Месяц: </label>
+                <input type="month" id="month" name="month"/>
+            </p>
+            <p>
+                <label for="time">Время: </label>
+                <input type="time" id="time" name="time"/>
+            </p>
+            <p>
+                <button type="submit">Отправить</button>
+            </p>
+            <!--Firefox поддерживает только элементы date и time, для остальных создаются обычные текстовые поля. А IE11 и вовсе не поддерживают эти элементы.-->
+        </form>
+        <p>--------------------------------</p>
+
+        <!--За выбор файлов на форме отвечает элемент input с атрибутом type="file"-->
+        <form enctype="multipart/form-data" method="post" action="http://localhost:8080/postfile.php">
+            <p>
+            	<!--Важно отметить, что для отправки файла на сервер форма должна иметь атрибут enctype="multipart/form-data"-->
+                <input type="file" name="file" multiple/>
+                <!--accept: устанавливает тип файл, которые допустимы для выбора
+				multiple: позволяет выбирать множество файлов
+				required: требует обязательной установки файла-->
+            </p>
+            <!--зажав клавишу CTRL выбрать несколько файлов-->
+            <p>
+                <input type="submit" value="Отправить" />
+            </p>
+        </form>
+        <p>--------------------------------</p>
+
+        <!--Элемент select создает список-->
+        <form method="get">
+            <p>
+                <label for="phone">Выберите модель:</label>
+                <select id="phone" name="phone">
+                    <option disabled selected>Выберите модель</option>
+				    <option value="iphone 6s">iPhone 6S</option>
+				    <option value="lumia 950">Lumia 950</option>
+				    <option value="nexus 5x" selected>Nexus 5X</option>
+                </select>
+            </p>
+            <p>
+                <input type="submit" value="Отправить" />
+            </p>
+            <p>
+                <label for="phone">Выберите модель:</label> <br/>
+            	<!--Для создания списка с множественным выбором к элементу select надо добавить атрибут multiple-->
+                <select multiple id="phone" name="phone">
+                	<option disabled selected>Выберите модель</option>
+                    <option value="iphone 6s">iPhone 6S</option>
+                    <option value="lumia 950">Lumia 950</option>
+                    <option value="nexus 5x">Nexus 5X</option>
+                    <option value="galaxy s7">Galaxy S7</option>
+                </select>
+            </p>
+            <p>
+                <input type="submit" value="Отправить" />
+            </p>
+            
+        </form>
+        <p>--------------------------------</p>
+
+        <!--Select также позволяет группировать элементы с помощью тега <optgroup>-->
+        <form method="get">
+            <p>
+                <label for="phone">Выберите модель:</label>
+             
+                <select id="phone" name="phone">
+                    <optgroup label="Apple">
+                        <option value="iphone 6s">iPhone 6S</option>
+                        <option value="iphone 6s plus">iPhone 6S Plus</option>
+                        <option value="iphone 5se">iPhone 5SE</option>
+                    </optgroup>
+                    <optgroup label="Microsoft">
+                        <option value="lumia 950">Lumia 950</option>
+                        <option value="lumia 950 xl">Lumia 950 XL</option>
+                        <option value="lumia 650">Lumia 650</option>
+                    </optgroup>
+                </select>
+            </p>
+            <p>
+                <input type="submit" value="Отправить" />
+            </p>
+        </form>
+
+        <!--optgroup and multiple-->
+        <form>
+        	<p>
+        		<label for="phoneid">Model:</label>
+        		<select id="phoneid" name="phone" multiple>
+        			<optgroup label="Apple1">
+        				<option value="iPhone6">iPhone6</option>
+        				<option value="iPhone7">iPhone7</option>
+        				<option value="iPhone10">iPhone10</option>
+        			</optgroup>
+        			<optgroup label="Microsoft1">
+        				<option value="Googlepixel1">Googlepixel1</option>
+        				<option value="Googlepixel2">Googlepixel2</option>
+        				<option value="Googlepixel3">Googlepixel3</option>
+        			</optgroup>
+        		</select>
+        	</p>
+        	<p>
+        		<input type="submit" value="Отправить" />
+        	</p>
+        </form>
+        <p>--------------------------------</p>
+
+        <!--textarea-->
+        <form method="get">
+            <p>
+                <label for="comment">Ваш комментарий:</label><br/>
+                <!--cols и rows можно задать соответственно количество столбцов и строк-->
+                <textarea name="comment" id="comment" placeholder="Не более 200 символов" maxlength="200" cols="30" rows="7"></textarea>   
+            </p>
+            <p>
+                <input type="submit" value="Добавить" />
+            </p>
+        </form>
+        <p>--------------------------------</p>
+
+        <!--Атрибут required требует обязательного наличия значения-->
+        <form method="get">
+            <p>
+                <label for="login">Логин:</label>
+                <input type="text" required id="login" name="login" />
+            </p>
+            <p>
+                <label for="password">Пароль:</label>
+                <input type="password" required id="password" name="password" />
+            </p>
+            <p>
+                <input type="submit" value="Отправить" />
+            </p>
+        </form>
+        
+        <!--Атрибут pattern-->
+        <form method="get">
+            <p>
+                <label for="phone">Телефон:</label>
+                <input type="text" placeholder="+1-234-567-8901"
+                        pattern="\+\d-\d{3}-\d{3}-\d{4}" id="phone" name="phone" />
+            </p>
+            <p>
+            	<!--Отключение валидации элемента формы атрибут novalidate, либо у кнопки отправки атрибут formnovalidate-->
+                <input type="submit" value="Отправить" formnovalidate/>
+            </p>
+        </form>
+        <p>--------------------------------</p>
+
+        <!--Для группировки элементов формы нередко применяется элемент fieldset. Он создает границу вокруг вложенных элементов, как бы создавая из них группу. Вместе с ним используется элемент legend, который устанавливает заголовок для группы элементов-->
+        <h2>Вход на сайт</h2>
+        <form>
+            <fieldset>
+                <legend>Введите данные:</legend>
+                <label for="login">Логин:</label><br>
+                <input type="text" name="login" id="login" /><br>
+                <label for="password">Пароль:</label><br>
+                <input type="password" name="password" id="password" /><br>
+                <input type="submit" value="Авторизация">
+            </fieldset>
+        </form>
+	</body>
+</html>
